@@ -2,10 +2,10 @@ mod vec3;
 mod color;
 mod ray;
 
-use std::os::windows;
+use std::mem::Discriminant;
 
 use color::write_color;
-use vec3::{Vec3, unit_vector};
+use vec3::{Vec3, unit_vector, dot};
 use ray::Ray;
 
 use Vec3 as Color;
@@ -16,7 +16,23 @@ struct Image {
     height: i32,
 }
 
+fn hit_sphere(centre: &Point3, radius: f32, r: &Ray) -> bool {
+    let oc = r.origin() - *centre;
+
+    let a = dot(r.direction(), r.direction());
+    let b = 2.0 * dot(oc, r.direction());
+    let c =  dot(oc, oc) - radius * radius;
+
+    let discriminant:f32  = b * b - 4.0 * a * c;
+
+    discriminant > 0.0
+}
+
 fn ray_color(r: Ray) -> Color {
+    if hit_sphere(&Point3::new(0.0,0.0,1.0), 0.5, &r) {
+        return Color::new(1.0, 0.0, 0.0);
+    }
+
     let unit_direction = unit_vector(r.direction());
     let t = 0.5 * (unit_direction.y() + 1.0);
 
