@@ -98,3 +98,17 @@ pub fn unit_vector(v: Vec3) -> Vec3 {
     let new_v = v.clone();
     new_v * (1.0 /new_v.length())
 }
+
+pub fn dot(u: Vec3, v: Vec3) -> f32 {
+    u.e0 * v.e0 +
+    u.e1 * v.e1 + 
+    u.e2 * v.e2 
+}
+
+pub fn cross(u: Vec3, v: Vec3) -> Vec3 {
+    Vec3::new(
+        u.e1 * v.e2 - u.e2 * v.e1,
+        u.e2 * v.e0 - u.e0 * v.e2, 
+        u.e0 * v.e1 - u.e1 * v.e0,
+    )
+}
