@@ -1,4 +1,4 @@
-use std::ops::{Mul, Div, Add, Neg};
+use std::ops::{Mul, Div, Add, Neg, Sub};
 
 pub struct Vec3 {
     e0: f32,
@@ -35,6 +35,14 @@ impl Vec3 {
 
     fn length_squared(self) -> f32 {
         self.e0 * self.e0 + self.e1 * self.e1 + self.e2 * self.e2
+    }
+}
+
+impl Copy for Vec3 {}
+
+impl Clone for Vec3 {
+    fn clone(&self) -> Self {
+        *self
     }
 }
 
@@ -86,3 +94,7 @@ impl Div<f32> for Vec3 {
     }
 }
 
+pub fn unit_vector(v: Vec3) -> Vec3 {
+    let new_v = v.clone();
+    new_v * (1.0 /new_v.length())
+}
