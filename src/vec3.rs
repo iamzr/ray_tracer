@@ -1,6 +1,6 @@
 use std::ops::{Mul, Div, Add, Neg};
 
-struct Vec3 {
+pub struct Vec3 {
     e0: f32,
     e1: f32,
     e2: f32,
@@ -13,15 +13,19 @@ impl Default for Vec3 {
 }
 
 impl Vec3 {
-    pub fn x(self) -> f32 {
+    pub fn new(x: f32, y: f32, z:f32) -> Self {
+        Self { e0: x, e1: y, e2: z}
+    }
+
+    pub fn x(&self) -> f32 {
         self.e0
     }
 
-    pub fn y(self) -> f32 {
+    pub fn y(&self) -> f32 {
         self.e1
     }
 
-    pub fn z(self) -> f32 {
+    pub fn z(&self) -> f32 {
         self.e2
     }
 

@@ -1,4 +1,8 @@
 mod vec3;
+mod color;
+
+use color::write_color;
+use vec3::Vec3;
 
 struct Image {
     width: i32,
@@ -29,11 +33,9 @@ fn main() {
 
             // println!("{} {} {}", r, g, b);
 
-            let ir = (255.999 as f32 * r) as i32;
-            let ig = (255.999 as f32 * g) as i32 ;
-            let ib = (255.999 as f32 * b) as i32 ;
-
-            println!("{} {} {}", ir, ig, ib);
+            let color: Vec3 = Vec3::new(r, g, b);
+        
+            write_color(&color);
         }
     }
 
