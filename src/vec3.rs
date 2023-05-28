@@ -38,6 +38,14 @@ impl Vec3 {
     }
 }
 
+impl Neg for Vec3 {
+    type Output = Self;
+
+    fn neg(self) -> Self::Output {
+        Self { e0: -self.e0, e1: -self.e1, e2: -self.e2}
+    }
+}
+
 impl Add for Vec3 {
     type Output = Self;
 
@@ -46,11 +54,11 @@ impl Add for Vec3 {
     }
 }
 
-impl Neg for Vec3 {
+impl Sub for Vec3 {
     type Output = Self;
 
-    fn neg(self) -> Self::Output {
-        Self { e0: -self.e0, e1: -self.e1, e2: -self.e2}
+    fn sub(self, rhs: Vec3) -> Self::Output {
+        Self { e0: self.e0 - rhs.e0, e1: self.e1 - rhs.e1, e2: self.e2 - rhs.e2}
     }
 }
 
