@@ -1,5 +1,6 @@
 mod vec3;
 mod color;
+mod ray;
 
 use color::write_color;
 use vec3::Vec3;
