@@ -4,7 +4,7 @@ struct Sphere {
 }
 
 impl Hittable for Sphere {
-    fn hit(r: &Ray, t_min: f32, t_max: f32, hit_record: &hit_record) -> bool {
+    fn hit(r: &Ray, t_min: f32, t_max: f32, hit_record: &HitRecord) -> bool {
         let oc = r.origin() - *centre;
 
         let a = r.direction().length_squared();
